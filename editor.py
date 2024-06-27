@@ -90,15 +90,16 @@ def prior_ich_stroke_editor(parent, edit, callback):
 def raw_data_input(col, editor_fn, string_fn, key, title, desc, icon, init_data, edit_data, callback):
     r = col.container(border=True)
 
-    icon_col, d = r.columns([0.2, 0.8])
-    utils.write_svg(icon_col, icon)
-
-    check_field, edit_field = r.columns([0.3, 0.7])
+    # Create layout
+    icon_field, result_field = r.columns([0.2, 0.8])
+    edit_field, check_field = r.columns([0.6, 0.4])
+    
+    utils.write_svg(icon_field, icon)
 
     # Get the previous edited state then update according to
     # the value of the checkbox
     edit = edit_data[key] is not None
-    edit = check_field.checkbox("✎ Edit?", key=f"{key}_edit_checkbox", value=edit, on_change=callback, args=(key,))
+    edit = check_field.checkbox("✎ Edit?", key=f"{key}_edit_checkbox", value=edit, on_change=callback, args=(key,), help=desc)
     
     result = editor_fn(edit_field, edit, callback)
     if edit:
@@ -117,8 +118,7 @@ def raw_data_input(col, editor_fn, string_fn, key, title, desc, icon, init_data,
         edit_string = string_fn(edit_data)
         full_string = f"{init_string} {edit_string}"
 
-    d.write(f"**{title}: {full_string}**")
-    d.write(desc)
+    result_field.write(f"**{title}: {full_string}**")
 
 def editor(
         parent,

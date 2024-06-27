@@ -123,6 +123,7 @@ def show_summary_table(parent, init_records, edit_records, selected_row):
         headerName="Name",
         headerTooltip="Hover to show T Number",
         tooltipField="t_number",
+        suppressToolPanel=True
     )
 
     grid_builder.configure_column(
@@ -130,7 +131,8 @@ def show_summary_table(parent, init_records, edit_records, selected_row):
         pinned="left",
         lockPinned=True,
         headerName="ARC Score",
-        cellStyle=make_arc_score_styler("arc_total")
+        cellStyle=make_arc_score_styler("arc_total"),
+        suppressToolPanel=True
     )
 
     grid_builder.configure_column(

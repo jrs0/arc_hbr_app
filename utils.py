@@ -21,7 +21,7 @@ def write_svg(container, path_to_svg: str):
     """
     with open(path_to_svg, mode="rb") as svg:
         b64 = base64.b64encode(svg.read()).decode("utf-8")
-        html = fr'<img src="data:image/svg+xml;base64,{b64}"/>'
+        html = fr'<img src="data:image/svg+xml;base64,{b64}" width="48" height="48"/>'
         container.write(html, unsafe_allow_html=True)
 
 def records_to_df(records):

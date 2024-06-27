@@ -19,6 +19,9 @@ st.info(
     icon="⚠️",
 )
 
+st.title("ARC HBR Scores")
+st.write("The summary table below shows the ARC scores for each patient. Click on a row to add missing values or make adjustments to underlying data")
+
 # Create containers in a fixed order to present the
 # data. The logic for updating must be the other
 # way round so the evaluation order of updates is
@@ -29,7 +32,7 @@ detail = st.container()
 # This is a mock -- replace will function that fetches real data
 @st.cache_data
 def get_init_records():
-    seed = 6
+    seed = 0
     random = Random(seed=seed)
     return {
         random.random_tnumber(): random.random_patient()
